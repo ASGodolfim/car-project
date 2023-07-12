@@ -5,15 +5,20 @@ import javax.persistence.*;
 @Entity
 @Table(name = "car_description")
 public class CarDescription {
-    public Long getId(){
-        return id;
-    }
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_chassi")
-        private Long id;
+        private Long idChassi;
+
+    public Long getId(){
+        return idChassi;
+    }
+
+    public void setId(Long idChassi){
+        this.idChassi = idChassi;
+    }
 
     @Column(name = "car_name")
         private String name;
