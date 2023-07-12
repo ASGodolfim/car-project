@@ -1,4 +1,4 @@
-package com.car.entity;
+package com.car.project;
 
 import javax.persistence.*;
 
@@ -6,11 +6,10 @@ import javax.persistence.*;
 @Table(name = "car_description")
 public class CarDescription {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_chassi")
-        private Long idChassi;
+    private Long idChassi;
 
     public Long getId(){
         return idChassi;
@@ -21,7 +20,7 @@ public class CarDescription {
     }
 
     @Column(name = "car_name")
-        private String name;
+    private String name;
 
     public String getName() {
         return name;
@@ -32,7 +31,7 @@ public class CarDescription {
     }
 
     @Column (name = "car_brand")
-        private String brand;
+    private String brand;
 
     public String getBrand() {
         return brand;
@@ -43,7 +42,7 @@ public class CarDescription {
     }
 
     @Column(name = "car_color")
-        private String color;
+    private String color;
 
     public String getColor() {
         return color;
@@ -54,7 +53,7 @@ public class CarDescription {
     }
 
     @Column(name = "fabrication_year")
-        private String fabricationYear;
+    private String fabricationYear;
 
     public String getFabricationYear() {
         return fabricationYear;
@@ -63,5 +62,6 @@ public class CarDescription {
     public void setFabricationYear(String fabricationYear) {
         this.fabricationYear = fabricationYear;
     }
+
 
 }

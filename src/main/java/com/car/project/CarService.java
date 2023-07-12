@@ -1,19 +1,17 @@
-package com.car.service;
+package com.car.project;
 
-import java.util.List;
-
-import com.car.entity.CarDescription;
-import com.car.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CarService {
-
     @Autowired
     CarRepository carRepository;
 
-    public CarDescription addCarDescription (CarDescription carDescription) {
+
+    public CarDescription addCarDescription(CarDescription carDescription) {
         return carRepository.save(carDescription);
     }
 
@@ -25,5 +23,3 @@ public class CarService {
         return carRepository.findAll();
     }
 }
-
-
