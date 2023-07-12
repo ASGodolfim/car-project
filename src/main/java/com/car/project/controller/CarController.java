@@ -1,5 +1,7 @@
-package com.car.project;
+package com.car.project.controller;
 
+import com.car.project.entity.CarDescription;
+import com.car.project.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +25,7 @@ public class CarController {
     }
 
     @GetMapping("/get/{idChassi}")
-    public CarDescription getCarById (@PathVariable("carById") Long idChassi){
+    public CarDescription getCarById (@PathVariable("idChassi") Long idChassi){
         return carService.getCarById(idChassi);
     }
 

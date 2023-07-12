@@ -1,4 +1,4 @@
-package com.car.project;
+package com.car.project.entity;
 
 import javax.persistence.*;
 

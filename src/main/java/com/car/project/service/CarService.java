@@ -1,5 +1,7 @@
-package com.car.project;
+package com.car.project.service;
 
+import com.car.project.entity.CarDescription;
+import com.car.project.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
