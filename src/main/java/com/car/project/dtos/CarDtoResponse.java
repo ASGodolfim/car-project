@@ -1,14 +1,7 @@
-package com.car.project.entity;
+package com.car.project.dtos;
 
-import javax.persistence.*;
+public class CarDtoResponse {
 
-@Entity
-@Table(name = "car_description")
-public class CarDescription {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_chassi")
     private Long idChassi;
 
     public Long getId(){
@@ -19,7 +12,6 @@ public class CarDescription {
         this.idChassi = idChassi;
     }
 
-    @Column(name = "car_name")
     private String name;
 
     public String getName() {
@@ -30,7 +22,6 @@ public class CarDescription {
         this.name = name;
     }
 
-    @Column (name = "car_brand")
     private String brand;
 
     public String getBrand() {
@@ -41,7 +32,6 @@ public class CarDescription {
         this.brand = brand;
     }
 
-    @Column(name = "car_color")
     private String color;
 
     public String getColor() {
@@ -51,8 +41,6 @@ public class CarDescription {
     public void setColor(String color) {
         this.color = color;
     }
-
-    @Column(name = "fabrication_year")
     private String fabricationYear;
 
     public String getFabricationYear() {
@@ -60,16 +48,6 @@ public class CarDescription {
     }
 
     public void setFabricationYear(String fabricationYear) {
-        this.fabricationYear = fabricationYear;
-    }
-
-    public CarDescription() {
-    }
-
-    public CarDescription( Long idChassi, String name, String brand, String color, String fabricationYear) {
-        this.name = name;
-        this.brand = brand;
-        this.color = color;
         this.fabricationYear = fabricationYear;
     }
 }
