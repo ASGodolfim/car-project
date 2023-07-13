@@ -4,6 +4,14 @@ public class CarDtoResponse {
 
     private Long idChassi;
 
+    public CarDtoResponse(Long idChassi, String name, String brand, String color, String fabricationYear) {
+        this.idChassi = idChassi;
+        this.name = name;
+        this.brand = brand;
+        this.color = color;
+        this.fabricationYear = fabricationYear;
+    }
+
     public Long getId(){
         return idChassi;
     }

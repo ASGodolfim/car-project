@@ -11,11 +11,11 @@ public class CarDescription {
     @Column(name = "id_chassi")
     private Long idChassi;
 
-    public Long getId(){
+    public Long getIdChassi(){
         return idChassi;
     }
 
-    public void setId(Long idChassi){
+    public void setIdChassi(Long idChassi){
         this.idChassi = idChassi;
     }
 

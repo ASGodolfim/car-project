@@ -4,7 +4,23 @@ import javax.persistence.Column;
 
 public class CarDtoRequest {
 
+    public CarDtoRequest(){
+    }
+
+    public CarDtoRequest(String name, String brand, String color, String fabricationYear) {
+        this.name = name;
+        this.brand = brand;
+        this.color = color;
+        this.fabricationYear = fabricationYear;
+    }
+
     private String name;
+
+    private String brand;
+
+    private String color;
+
+    private String fabricationYear;
 
     public String getName() {
         return name;
@@ -14,8 +30,6 @@ public class CarDtoRequest {
         this.name = name;
     }
 
-    private String brand;
-
     public String getBrand() {
         return brand;
     }
@@ -24,8 +38,6 @@ public class CarDtoRequest {
         this.brand = brand;
     }
 
-    private String color;
-
     public String getColor() {
         return color;
     }
@@ -33,8 +45,6 @@ public class CarDtoRequest {
     public void setColor(String color) {
         this.color = color;
     }
-
-    private String fabricationYear;
 
     public String getFabricationYear() {
         return fabricationYear;
