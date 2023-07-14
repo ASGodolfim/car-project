@@ -1,15 +1,12 @@
 package com.car.project.controller;
 
-import com.car.project.dtos.CarDtoRequest;
-import com.car.project.dtos.CarDtoResponse;
-import com.car.project.entity.CarDescription;
+import com.car.project.dtos.CarDto;
+import com.car.project.entity.Car;
 import com.car.project.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @RestController
@@ -19,38 +16,22 @@ public class CarController {
     CarService carService;
 
     @GetMapping(value = "/all")
-    public @ResponseBody List<CarDescription> getAllCars() {
+    public @ResponseBody List<Car> getAllCars() {
         return carService.getAllCars();
     }
 
-    @GetMapping("/get")
-    public String get() {
-        return "Test";
-    }
-
     @GetMapping("/get/{idChassi}")
-    public CarDtoResponse getCarById(@PathVariable("idChassi") Long idChassi) {
+    public CarDto getCarById(@PathVariable("idChassi") Long idChassi) {
         return carService.getCarById(idChassi);
     }
 
-    @PostMapping("/post")
-    public String addCarDescription(@RequestBody CarDtoRequest carDtoRequest) {
-        carService.addCarDescription(carDtoRequest);
-        if (brandCheck(carDtoRequest)) {
-            return "Post saved!";
-        } else {
-            return "Invalid Brand";
-        }
+    @PostMapping("/postDto")
+    public Car addCarDto (@RequestBody Car car) {
+        return carService.addCarDto(car);
     }
-    private static boolean brandCheck (CarDtoRequest carDtoRequest){
-        Set<String> brands = new HashSet<>();
-        brands.add("Ford");
-        brands.add("Volvo");
-        brands.add("Chevrolet");
-        brands.add("BMW");
-        if (brands.contains(carDtoRequest.getBrand())){
-            return true;
-        }else {
-            return false;}
+
+    @PostMapping("/post")
+    public Car addCar (@RequestBody Car car) {
+        return carService.addCar(car);
     }
 }

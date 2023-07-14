@@ -1,4 +1,4 @@
-package com.car.project.exeption;
+package com.car.project.service.exeption;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
