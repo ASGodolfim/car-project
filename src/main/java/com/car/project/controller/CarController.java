@@ -16,16 +16,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/carros")
 public class CarController {
+
     @Autowired
     CarService carService;
     @Autowired
     private ModelMapper mapper;
 
+    //Getter for the Id Search
     @GetMapping("/get/{idChassi}")
     public ResponseEntity<CarDto> getCarById(@PathVariable("idChassi") Long idChassi) {
         return ResponseEntity.ok().body(mapper.map(carService.getCarById(idChassi), CarDto.class));
     }
 
+    //Send the Car to the Service for Verification
     @PostMapping("/post")
     public ResponseEntity<CarDto> addCar(@RequestBody CarDto car) {
         Car newCar = carService.addCar(car);

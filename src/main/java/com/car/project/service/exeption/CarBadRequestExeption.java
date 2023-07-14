@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class CarExeption extends IllegalArgumentException{
-    public CarExeption(String msg){
+public class CarBadRequestExeption extends IllegalArgumentException{
+    public CarBadRequestExeption(String msg){
         super(msg);
     }
 }
