@@ -1,6 +1,6 @@
 package com.car.project.service;
 
-import com.car.project.dtos.CarDto;
+import com.car.project.dto.CarDto;
 import com.car.project.entity.Car;
 import com.car.project.repository.CarRepository;
 import com.car.project.service.exeption.CarBadRequestExeption;
@@ -21,7 +21,7 @@ public class CarService {
     @Autowired
     ModelMapper mapper;
 
-    // Brand Verification by List
+    //Brand Verification by List
     private static boolean brandCheck (CarDto car){
         Set<String> brands = new HashSet<>();
         brands.add("Ford");
@@ -42,6 +42,8 @@ public class CarService {
             return false;
         }
     }
+
+
     //Verify Nulls and typos on Brand and save them on the Database
     public Car addCar (@RequestBody CarDto car) {
         if (brandCheck(car) && nullCheck(car)) {

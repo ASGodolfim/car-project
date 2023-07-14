@@ -1,4 +1,4 @@
-package com.car.project.dtos;
+package com.car.project.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

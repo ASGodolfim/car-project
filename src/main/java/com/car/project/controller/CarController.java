@@ -1,8 +1,9 @@
 package com.car.project.controller;
 
-import com.car.project.dtos.CarDto;
+import com.car.project.dto.CarDto;
 import com.car.project.entity.Car;
 import com.car.project.service.CarService;
+import org.hibernate.annotations.Parent;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 
 @RestController
@@ -32,8 +32,9 @@ public class CarController {
     @PostMapping("/post")
     public ResponseEntity<CarDto> addCar(@RequestBody CarDto car) {
         Car newCar = carService.addCar(car);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/get/{idChassi}").buildAndExpand(newCar.getIdChassi()).toUri();
-        System.out.println("Saved!");
+        URI uri = ServletUriComponentsBuilder.
+                fromCurrentRequest().path("/get/{idChassi}").
+                buildAndExpand(newCar.getIdChassi()).toUri();
         return ResponseEntity.created(uri).build();
     }
 }
