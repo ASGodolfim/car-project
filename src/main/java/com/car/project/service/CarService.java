@@ -5,8 +5,10 @@ import com.car.project.entity.Car;
 import com.car.project.repository.CarRepository;
 import com.car.project.service.exeption.CarExeption;
 import com.car.project.service.exeption.CarNotFound;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,8 +18,10 @@ import java.util.Set;
 public class CarService {
     @Autowired
     CarRepository carRepository;
+    @Autowired
+    ModelMapper mapper;
 
-    private static boolean brandCheck (Car car){
+    private static boolean brandCheck (CarDto car){
         Set<String> brands = new HashSet<>();
         brands.add("Ford");
         brands.add("Volvo");
@@ -29,39 +33,17 @@ public class CarService {
         return false;}
     }
 
-        public Car addCar (Car car){
-//        CarDescription carDescription = new CarDescription(
-//                null,
-//                carDtoResponse.getName(),
-//                carDtoResponse.getBrand(),
-//                carDtoResponse.getColor(),
-//                carDtoResponse.getFabricationYear());
-            if (brandCheck(car)) {
-                return carRepository.save(car);
-            } else {
-                throw new CarExeption("Invalid Brand");
-            }
+    public Car addCar (@RequestBody CarDto car) {
+        if (brandCheck(car)) {
+            return carRepository.save(mapper.map(car, Car.class));
+        } else {
+            throw new CarExeption("Invalid Brand");
         }
-
-    public Car addCarDto (Car car){
-//        CarDescription carDescription = new CarDescription(
-//                null,
-//                carDtoResponse.getName(),
-//                carDtoResponse.getBrand(),
-//                carDtoResponse.getColor(),
-//                carDtoResponse.getFabricationYear());
-            return carRepository.save(car);
     }
-
-
 
     public CarDto getCarById (Long idChassi) {
-        Car car = carRepository.findById(idChassi).orElseThrow(()-> new CarNotFound("Not Found"));
+        Car car = carRepository.findById(idChassi).orElseThrow(()-> new CarNotFound("ID Not Found"));
         CarDto carDto = new CarDto(car.getIdChassi(), car.getName(), car.getBrand(), car.getColor(), car.getFabricationYear());
         return carDto;
-    }
-
-    public List<Car> getAllCars() {
-        return carRepository.findAll();
     }
 }

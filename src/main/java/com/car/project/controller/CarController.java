@@ -3,9 +3,13 @@ package com.car.project.controller;
 import com.car.project.dtos.CarDto;
 import com.car.project.entity.Car;
 import com.car.project.service.CarService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 
@@ -14,24 +18,19 @@ import java.util.List;
 public class CarController {
     @Autowired
     CarService carService;
-
-    @GetMapping(value = "/all")
-    public @ResponseBody List<Car> getAllCars() {
-        return carService.getAllCars();
-    }
+    @Autowired
+    private ModelMapper mapper;
 
     @GetMapping("/get/{idChassi}")
-    public CarDto getCarById(@PathVariable("idChassi") Long idChassi) {
-        return carService.getCarById(idChassi);
-    }
-
-    @PostMapping("/postDto")
-    public Car addCarDto (@RequestBody Car car) {
-        return carService.addCarDto(car);
+    public ResponseEntity<CarDto> getCarById(@PathVariable("idChassi") Long idChassi) {
+        return ResponseEntity.ok().body(mapper.map(carService.getCarById(idChassi), CarDto.class));
     }
 
     @PostMapping("/post")
-    public Car addCar (@RequestBody Car car) {
-        return carService.addCar(car);
+    public ResponseEntity<CarDto> addCar(@RequestBody CarDto car) {
+        Car newCar = carService.addCar(car);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/get/{idChassi}").buildAndExpand(newCar.getIdChassi()).toUri();
+        System.out.println("Saved!");
+        return ResponseEntity.created(uri).build();
     }
 }
