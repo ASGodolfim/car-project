@@ -32,8 +32,7 @@ public class CarController {
     @PostMapping("/post")
     public ResponseEntity<CarDto> addCar(@RequestBody CarDto car) {
         Car newCar = carService.addCar(car);
-        URI uri = ServletUriComponentsBuilder.
-                fromCurrentRequest().path("/get/{idChassi}").
+        URI uri = ServletUriComponentsBuilder.fromPath("localhost:8080/carros/get/{idChassi}").
                 buildAndExpand(newCar.getIdChassi()).toUri();
         return ResponseEntity.created(uri).build();
     }
